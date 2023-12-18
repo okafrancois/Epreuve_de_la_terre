@@ -1,5 +1,5 @@
 function isEvenOrOdd(number) {
-  let output = "No number where provided"
+  let output = "No number was provided"
 
   if (number && isNaN(number)) {
     output = "The provided value is not a number"
