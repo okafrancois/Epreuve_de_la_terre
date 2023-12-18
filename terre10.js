@@ -5,7 +5,7 @@ function isPrimeNumber(numberItem) {
     return "Error: please provide a valid number"
   }
 
-  if (number < 2) {
+  if (number < 2 || (number > 2 && number % 2 ===  0)) {
     return `${number} is not a prime`
   }
 
