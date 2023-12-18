@@ -1,24 +1,20 @@
 
-const frenchAlphabet = [
-  'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
-  'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
-  'u', 'v', 'x', 'y', 'z'
-]
+const frenchAlphabet = "abcdefghijklmnopqrstuvwxyz"
 function displayAlphabetFromStartPoint(startPoint) {
 
-  let result = "The provide letter is not part of the french alphabet"
+  let output = "The provided letter is not part of the french alphabet"
 
-  const startIndex = frenchAlphabet.findIndex((letter) => letter.toLowerCase() === startPoint.toLowerCase())
+  const startIndex = frenchAlphabet.indexOf(startPoint.toLowerCase())
 
   if (startIndex !== -1) {
-    result = ""
+    output = ""
 
     for (let i = startIndex; i < frenchAlphabet.length; i++) {
-      result += frenchAlphabet[i]
+      output += frenchAlphabet[i]
     }
   }
 
-  return result
+  return output
 }
 
 console.log(displayAlphabetFromStartPoint(process.argv[2]))
