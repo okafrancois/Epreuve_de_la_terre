@@ -1,6 +1,9 @@
 
 const frenchAlphabet = "abcdefghijklmnopqrstuvwxyz"
 function displayAlphabetFromStartPoint(startPoint) {
+  if (!startPoint) {
+    return "No letter provided"
+  }
 
   let output = "The provided letter is not part of the french alphabet"
 
