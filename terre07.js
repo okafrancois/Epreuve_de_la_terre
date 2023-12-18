@@ -1,14 +1,14 @@
 function displayChartLength(params) {
-  if (params.length > 3) {
+  if (params.length > 1) {
     return "Error: Too much items";
   }
 
-  if (!isNaN(parseInt(params[2]))) {
+  if (!isNaN(parseInt(params[0]))) {
     return "Error: numbers not allowed"
   }
 
   let count = 0
-  const textTable = params[2].split("")
+  const textTable = params[0].split("")
 
   textTable.forEach(letter => {
     count++
@@ -17,4 +17,4 @@ function displayChartLength(params) {
   return `${count}`
 }
 
-console.log(displayChartLength(process.argv))
+console.log(displayChartLength(process.argv.slice(2)))
