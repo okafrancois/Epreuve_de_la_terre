@@ -7,7 +7,7 @@ function isEvenOrOdd(number) {
     output = number % 2 ===  0 ? "pair" : "impair"
   }
 
-  console.log(output)
+  return output
 }
 
-isEvenOrOdd(process.argv[2])
+console.log(isEvenOrOdd(process.argv[2]))

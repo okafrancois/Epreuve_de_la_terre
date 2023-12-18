@@ -18,7 +18,7 @@ function displayAlphabetFromStartPoint(startPoint) {
     }
   }
 
-  console.log(result)
+  return result
 }
 
-displayAlphabetFromStartPoint(process.argv[2])
+console.log(displayAlphabetFromStartPoint(process.argv[2]))

@@ -1,7 +1,5 @@
 function displayCurrentFileName() {
-  const fileName = __filename.split("/").pop();
-
-  console.log(fileName)
+  return  __filename.split("/").pop();
 }
 
-displayCurrentFileName();
+console.log(displayCurrentFileName());

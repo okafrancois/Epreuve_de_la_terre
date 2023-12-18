@@ -5,13 +5,13 @@ const frenchAlphabet = [
 ]
 
 function displayAlphabet (alphabet) {
-  let render = ""
+  let result = ""
 
   alphabet.forEach((letter) => {
-    render += letter.toLowerCase()
+    result += letter.toLowerCase()
   })
 
-  console.log(render)
+  return result
 }
 
-displayAlphabet(frenchAlphabet)
+console.log((displayAlphabet(frenchAlphabet)))

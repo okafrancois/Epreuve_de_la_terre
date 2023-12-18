@@ -5,7 +5,7 @@ function displayParams(params) {
     result += params[i] + "\n";
   }
 
-  console.log(result);
+  return result;
 }
 
-displayParams(process.argv.slice(2));
+console.log(displayParams(process.argv.slice(2)));
