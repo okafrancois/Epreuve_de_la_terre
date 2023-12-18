@@ -9,8 +9,6 @@ function getSquareRoot(numberItem) {
     return numberItem;
   }
 
-  let count =  0
-
   let lowerBound = 0;
   let upperBound = number;
   let mid;
