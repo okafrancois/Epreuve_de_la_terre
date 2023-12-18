@@ -14,7 +14,7 @@ function displayChartLength(params) {
     count++
   })
 
-  return count
+  return `${count}`
 }
 
 console.log(displayChartLength(process.argv))
