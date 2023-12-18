@@ -1,7 +1,7 @@
 function convertTo12Format(hour) {
 
-  if (checkHourValidity(hour)) {
-    return checkHourValidity(hour)
+  if (isTimeInvalid(hour)) {
+    return isTimeInvalid(hour)
   }
 
   const [hours, minutes] = hour.split(":")
@@ -13,16 +13,10 @@ function convertTo12Format(hour) {
   }
 }
 
-function checkHourValidity(hour) {
-  const expectedFormat = /\d\d:\d\d/i;
-  const [hours, minutes] = hour.split(":")
-
+function isTimeInvalid(hour) {
+  const expectedFormat = /^(2[0-4]|[01]?[0-9]):([0-5][0-9])$/i;
   if (!expectedFormat.test(hour)) {
-    return "Error: The provided time is not in the expected format (HH:MM)."
-  }
-
-  if (isNaN(parseInt(hours)) || parseInt(hours) > 24 || parseInt(hours) < 1 || isNaN(parseInt(minutes)) || parseInt(minutes) > 60 || parseInt(minutes) < 1) {
-    return `Error: The provided time is invalid.`
+    return "Error: The provided time is invalid (expected: HH:MM)."
   }
 }
 
