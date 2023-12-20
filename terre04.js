@@ -1,13 +1,23 @@
-function isEvenOrOdd(number) {
-  let output = "No number was provided"
-
-  if (number && isNaN(number)) {
-    output = "The provided value is not a number"
-  } else {
-    output = number % 2 ===  0 ? "pair" : "impair"
+function isEvenOrOdd(args) {
+  if (!isValid(args)) {
+   return "No valid argument was provided"
   }
 
-  return output
+  const providedValue = Number(args[0])
+
+  if (isNaN(providedValue)) {
+    return "The provided value is not a number"
+  }
+
+  return providedValue % 2 ===  0 ? "pair" : "impair"
 }
 
-console.log(isEvenOrOdd(process.argv[2]))
+function isValid(argItems) {
+  return !(argItems === undefined || argItems === null || argItems?.length === 0);
+}
+
+function getNodeProcessArgs() {
+  return process.argv.slice(2)
+}
+
+console.log(isEvenOrOdd(getNodeProcessArgs()))

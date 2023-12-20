@@ -1,23 +1,34 @@
 
-const frenchAlphabet = "abcdefghijklmnopqrstuvwxyz"
-function displayAlphabetFromStartPoint(startPoint) {
-  if (!startPoint) {
-    return "No letter provided"
+function getAlphabetFrom(args) {
+  if (!isValid(args)) {
+    return "Error: no valid character argument provided"
   }
 
-  let output = "The provided letter is not part of the french alphabet"
+  const [character] = args
 
-  const startIndex = frenchAlphabet.indexOf(startPoint.toLowerCase())
+  if (!isAlphabetLetter(character)) {
+    return "Error: provided character is not an alphabet letter"
+  }
 
-  if (startIndex !== -1) {
-    output = ""
+  let output = "";
+  const starPointCode = character.toLowerCase().charCodeAt(0)
 
-    for (let i = startIndex; i < frenchAlphabet.length; i++) {
-      output += frenchAlphabet[i]
-    }
+  for (let i = starPointCode; i < 122; i++) {
+    output += String.fromCharCode(i)
   }
 
   return output
 }
 
-console.log(displayAlphabetFromStartPoint(process.argv[2]))
+function isAlphabetLetter(character) {
+  return /^[a-zA-Z]$/.test(character);
+}
+function isValid(argItems) {
+  return !(argItems === undefined || argItems === null || argItems?.length === 0);
+}
+
+function getNodeProcessArgs() {
+  return process.argv.slice(2)
+}
+
+console.log(getAlphabetFrom(getNodeProcessArgs()))
