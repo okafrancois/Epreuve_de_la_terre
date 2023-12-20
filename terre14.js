@@ -1,17 +1,11 @@
-function isSorted(numbers) {
-  let isInvalid = false;
+function isSorted(args) {
+  const [isValid, errorMessage] = checkValidity(args)
 
-  const formattedNumbers = numbers.map(item => {
-    const number = parseInt(item);
-    if (isNaN(number)) {
-      isInvalid = true;
-    }
-    return number;
-  });
-
-  if (isInvalid) {
-    return "Error: invalid data provided";
+  if (!isValid) {
+    return errorMessage
   }
+
+  const formattedNumbers = args.map(numberSting => Number(numberSting));
 
   for (let currentIndex = 0; currentIndex < formattedNumbers.length - 1; currentIndex++) {
     if (formattedNumbers[currentIndex] > formattedNumbers[currentIndex + 1]) {
@@ -22,4 +16,21 @@ function isSorted(numbers) {
   return "Sorted !";
 }
 
-console.log(isSorted(process.argv.slice(2)));
+function checkValidity(args) {
+  if (args.length === 0) {
+    return [false, "Error: no data provided"];
+  }
+
+  const formattedArgs = args.map(numberStr => Number(numberStr));
+
+  if (formattedArgs.some(isNaN)) {
+    return [false, "Error: Invalid data provided (expecting numbers only)"];
+  }
+
+  return [true, ""];
+}
+function getNodeProcessArgs() {
+  return process.argv.slice(2)
+}
+
+console.log(isSorted(getNodeProcessArgs()));
