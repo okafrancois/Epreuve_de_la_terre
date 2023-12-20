@@ -1,5 +1,5 @@
-function displayCurrentFileName() {
+function getCurrentFileName() {
   return  __filename.split("/").pop();
 }
 
-console.log(displayCurrentFileName());
+console.log(getCurrentFileName());
