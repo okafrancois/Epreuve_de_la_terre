@@ -1,20 +1,24 @@
-function divideNumbers(number1, number2) {
-  const firstNumber = parseInt(number1)
-  const secondNumber = parseInt(number2)
-
-  if (secondNumber === 0) {
-    return "Can't divide by 0 -_-"
+function getDivisionResult(args) {
+  if (!isValid(args)) {
+    return "Error: Provided data are invalid (expecting 2 numbers)"
   }
 
-  if (isNaN(firstNumber) || isNaN(secondNumber)) {
-    return  "Provided data invalid -_-"
-  } else {
-    const divisionResult = Math.floor(firstNumber/secondNumber)
+  const value1 = Number(args[0])
+  const value2 = Number(args[1])
 
-    const remainder = firstNumber % secondNumber
+  const divisionResult = value1/value2
 
-    return `Result: ${divisionResult} \n Reste: ${remainder}`
-  }
+  const remainder = value1 % value2
+
+  return `Result: ${divisionResult} \n Remain: ${remainder}`
 }
 
-console.log(divideNumbers(process.argv[2], process.argv[3]))
+function isValid(args) {
+  return args.length === 2 && !isNaN(Number(args[0])) && !isNaN(Number(args[1]))
+}
+
+function getNodeProcessArgs() {
+  return process.argv.slice(2)
+}
+
+console.log(getDivisionResult(getNodeProcessArgs()))

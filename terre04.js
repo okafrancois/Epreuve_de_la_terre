@@ -13,7 +13,7 @@ function isEvenOrOdd(args) {
 }
 
 function isValid(argItems) {
-  return !(argItems === undefined || argItems === null || argItems?.length === 0);
+  return !(argItems === undefined || argItems === null || argItems.length !== 1);
 }
 
 function getNodeProcessArgs() {
