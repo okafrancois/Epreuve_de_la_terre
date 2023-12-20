@@ -1,22 +1,39 @@
-function powerNumber(number1, number2) {
-  const firstNumber = parseInt(number1)
-  const secondNumber = parseInt(number2)
+function powerNumber(args) {
+  const [isValid, errorMessage] = checkValidity(args)
 
-  if (secondNumber < 0) {
-    return "Error: Exponent cannot be a negative number."
+  if (!isValid) {
+    return errorMessage
   }
 
-  if (isNaN(firstNumber) || isNaN(secondNumber)) {
-    return  "Error: Invalid data."
-  } else {
-    let result = number1
+  const [value, exponent] = args
 
-    for (let i = number2; i > 1; i--) {
-        result = result * number1
-    }
+  let result = value
 
-    return result
+  for (let i = exponent; i > 1; i--) {
+    result = result * value
   }
+
+  return result
 }
 
-console.log(powerNumber(process.argv[2], process.argv[3]))
+function checkValidity(args) {
+  if (args.length !== 2) {
+    return [false, "Error: not enough or too much item provided (expecting 2)"]
+  }
+
+  if (isNaN(Number(args[0])) || isNaN(Number(args[1]))) {
+    return [false, "Error: provided data are invalid (expecting 2 numbers)"]
+  }
+
+  if (Number(args[1]) < 0) {
+    return [false, "Error: exponent cannot be a negative number"]
+  }
+
+  return [true, ""]
+}
+
+function getNodeProcessArgs() {
+  return process.argv.slice(2)
+}
+
+console.log(powerNumber(getNodeProcessArgs()))

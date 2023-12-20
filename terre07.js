@@ -1,20 +1,25 @@
-function displayChartLength(params) {
-  if (params.length > 1) {
-    return "Error: Too much items";
+function getStringLength(args) {
+  if (!isValid(args)) {
+    return "Error: too much or no valid data provided"
   }
 
-  if (!isNaN(parseInt(params[0]))) {
-    return "Error: numbers not allowed"
-  }
+  const [providedString] = args
 
   let count = 0
-  const textTable = params[0].split("")
 
-  textTable.forEach(letter => {
+  for (const textTableKey in providedString.split("")) {
     count++
-  })
+  }
 
   return `${count}`
 }
 
-console.log(displayChartLength(process.argv.slice(2)))
+function isValid(args) {
+  return args && args.length === 1
+}
+
+function getNodeProcessArgs() {
+  return process.argv.slice(2)
+}
+
+console.log(getStringLength(getNodeProcessArgs()))

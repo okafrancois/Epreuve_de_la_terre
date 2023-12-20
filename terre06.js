@@ -1,7 +1,9 @@
-function reverseChart(text){
- if (!text) {
-   return "No text provide"
+function getReversed(args){
+ if (!isValid(args)) {
+   return "Error: invalid provided data"
  }
+
+ const [text] = args
 
  let reversedResult = ""
  const textTable = text.split("")
@@ -13,4 +15,12 @@ function reverseChart(text){
   return  reversedResult
 }
 
-console.log(reverseChart(process.argv[2]))
+function isValid(args) {
+  return args && args.length === 1
+}
+
+function getNodeProcessArgs() {
+  return process.argv.slice(2)
+}
+
+console.log(getReversed(getNodeProcessArgs()))

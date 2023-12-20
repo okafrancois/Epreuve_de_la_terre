@@ -1,28 +1,38 @@
-function convertTo24Format(hourString) {
+function convertTo24Format(args) {
+  const [isValid, errorMessage] = checkValidity(args)
 
-  if (isTimeInvalid(hourString)) {
-    return isTimeInvalid(hourString)
+  if (!isValid) {
+    return errorMessage
   }
 
-  const periodIndex = hourString.search(/(AM|PM)$/i)
+  const [timeString] = args
 
-  const period = hourString.slice(periodIndex)
+  const period = timeString.slice(timeString.length - 2)
 
-  const [hours, minutes] = hourString.split(period)[0].split(":")
+  const [hours, minutes] = timeString.slice(0, timeString.length - 2).split(":")
+
 
   if (period === "PM") {
-    return `${parseInt(hours) + 12}:${minutes}`
+    return `${Number(hours) + 12}:${minutes}`
   } else {
     return  `${hours}:${minutes}`
   }
 }
 
-function isTimeInvalid(hour) {
-  const expectedFormat = /^(0?[1-9]|1[0-2]):([0-5][0-9])(AM|PM)$/i;
-
-  if (!expectedFormat.test(hour)) {
-    return `Error: The provided time is invalid (expected: hh:mmAM|PM).`
+function checkValidity(args) {
+  if (args.length !== 1) {
+    return [false, "Error: not enough or too much item provided (expecting 1)"]
   }
-}
 
-console.log(convertTo24Format(process.argv[2]))
+  const expectedFormat = /^(0?[1-9]|1[0-2]):([0-5][0-9])(AM|PM)$/i;
+  if (!expectedFormat.test(args[0])) {
+
+    return [false, "Error: The provided time is invalid (expected: hh:mmAM|PM)."]
+  }
+
+  return [true, ""]
+}
+function getNodeProcessArgs() {
+  return process.argv.slice(2)
+}
+console.log(convertTo24Format(getNodeProcessArgs()))
