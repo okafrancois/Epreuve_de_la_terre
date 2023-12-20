@@ -1,13 +1,11 @@
-const frenchAlphabet = "abcdefghijklmnopqrstuvwxyz"
-
-function displayAlphabet (alphabet) {
+function getAlphabet() {
   let output = ""
 
-  for (const letter of alphabet) {
-    output += letter
+  for (let i = 97; i <= 122; i++) {
+    output += String.fromCharCode(i)
   }
 
   return output
 }
 
-console.log(displayAlphabet(frenchAlphabet))
+console.log(getAlphabet())
