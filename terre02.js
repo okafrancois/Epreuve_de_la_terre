@@ -2,7 +2,7 @@ function displayNodeProcessArgs() {
   const args = getNodeProcessArgs()
 
   if (!isValid(args)) {
-    console.log("Error: no argument provided")
+    console.error("Error: no argument provided")
   }
 
   for (const arg of args) {
