@@ -1,11 +1,22 @@
-function displayParams(params) {
-  let result = "";
+function displayNodeProcessArgs() {
+  const args = getNodeProcessArgs()
 
-  for (let i = 0; i < params.length; i++) {
-    result += params[i] + "\n";
+  if (!isValid(args)) {
+    console.log("Error: no argument provided")
   }
 
-  return result;
+  for (const arg of args) {
+    console.log(arg)
+  }
 }
 
-console.log(displayParams(process.argv.slice(2)));
+function isValid(argItems) {
+  return !(argItems === undefined || argItems === null || argItems?.length === 0);
+}
+
+function getNodeProcessArgs() {
+  return process.argv.slice(2)
+}
+
+
+displayNodeProcessArgs()
